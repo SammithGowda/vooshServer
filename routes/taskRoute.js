@@ -8,7 +8,7 @@ const createTask = async (req, res) => {
         await task.save();
         res.status(201).json({ data: task })
     } catch (error) {
-        res.status(401).send({ Error: error })
+        res.status(401).json({ Error: error })
 
     }
 }
@@ -45,6 +45,7 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
     const { _id } = req.params;
     const { taskName, description } = req.body;
+    console.log(_id, taskName, description);
     try {
         const task = await Task.findByIdAndUpdate(_id, { taskName, description }, { new: true })
         if (!task) {
