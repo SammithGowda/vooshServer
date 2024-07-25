@@ -24,14 +24,18 @@ const getTask = async (req, res) => {
     }
 }
 const deleteTask = async (req, res) => {
-    const { _id } = req.body;
+    const { _id } = req.params;
+    console.log(req.params, "delete query");
     try {
+        if (!_id) {
+            return res.status(404).json({ error: 'Please selected id' });
+        }
         const task = await Task.findByIdAndDelete(_id)
         if (!task) {
             return res.status(404).json({ error: 'Task not found' });
 
         }
-        res.status(201).json({ data: "Deleted successfully " })
+        res.status(200).json({ data: "Deleted successfully " })
     } catch (error) {
         res.status(401).send({ Error: error })
 

@@ -13,7 +13,7 @@ app.post('/login', login)
 app.get('/getTask', getTask)
 app.post('/signup', signUp)
 app.post('/createTask', createTask)
-app.delete('/deleteTask', deleteTask)
+app.delete('/deleteTask/:_id', deleteTask)
 app.put('/updateTask/:_id', updateTask)
 // app.use(authRoute);
 const PORT = 3000;

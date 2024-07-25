@@ -20,7 +20,6 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
     const { email, password } = req.body
     try {
-        console.log("in server signup try block");
 
         if (!email || !password) {
             return res.status(422).send({ error: "Must provide email and password !" })
@@ -40,7 +39,7 @@ const login = async (req, res) => {
 
         res.status(201).json({ message: user })
     } catch (error) {
-        console.log(`Error in signup catch block ${error}`)
+        // console.log(`Error in signup catch block ${error}`)
         res.status(401).send({ Error: error })
     }
 }
