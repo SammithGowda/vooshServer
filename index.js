@@ -15,7 +15,7 @@ app.post('/signup', signUp)
 app.post('/createTask', createTask)
 app.delete('/deleteTask/:_id', deleteTask)
 app.put('/updateTask/:_id', updateTask)
-// app.use(authRoute);
+
 const PORT = 3000;
 const userName = process.env.MONGODB_USER
 const password = process.env.MONGODB_PASS

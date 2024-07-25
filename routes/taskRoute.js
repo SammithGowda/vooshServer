@@ -13,7 +13,6 @@ const createTask = async (req, res) => {
     }
 }
 const getTask = async (req, res) => {
-    const { taskName, description } = req.body;
     try {
         const task = await Task.find()
         // await task.save();
@@ -25,7 +24,6 @@ const getTask = async (req, res) => {
 }
 const deleteTask = async (req, res) => {
     const { _id } = req.params;
-    console.log(req.params, "delete query");
     try {
         if (!_id) {
             return res.status(404).json({ error: 'Please selected id' });
@@ -45,7 +43,6 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
     const { _id } = req.params;
     const { taskName, description } = req.body;
-    console.log(_id, taskName, description);
     try {
         const task = await Task.findByIdAndUpdate(_id, { taskName, description }, { new: true })
         if (!task) {
@@ -53,7 +50,6 @@ const updateTask = async (req, res) => {
         }
         res.status(200).json({ message: 'Task updated successfully', task });
     } catch (error) {
-        console.log(error)
         res.status(401).send({ Error: error })
 
     }

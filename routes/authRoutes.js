@@ -1,20 +1,17 @@
 const User = require('../module/userModule')
 
 const signUp = async (req, res) => {
-    console.log("alsjkdbnv ");
     const { email, password, firstName, lastName, confirmPassword } = req.body
     try {
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            console.log("herr");
             return res.status(409).json({ data: 'User with this email already exists' });
         }
         const user = new User({ email, password, firstName, lastName, confirmPassword })
         await user.save();
         res.status(201).json({ message: "User created successfully" })
     } catch (error) {
-        console.log(`Error in signup catch block ${error}`)
         res.status(401).json({ Error: error })
     }
 }
@@ -41,7 +38,6 @@ const login = async (req, res) => {
 
         res.status(201).json({ message: user })
     } catch (error) {
-        // console.log(`Error in signup catch block ${error}`)
         res.status(401).send({ Error: error })
     }
 }
